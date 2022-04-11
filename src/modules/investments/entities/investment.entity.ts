@@ -23,9 +23,9 @@ export class Investment extends BaseEntity {
     nullable: false,
     eager: true,
   })
-  @JoinColumn({ name: 'invesment_type_id', referencedColumnName: 'id' })
-  invesmentType: InvestmentType;
+  @JoinColumn({ name: 'investment_type_id', referencedColumnName: 'id' })
+  investmentType: InvestmentType;
 
-  @Column({ type: 'uuid', nullable: false, name: 'invesment_type_id' })
-  invesmentTypeId: string;
+  @Column({ type: 'uuid', nullable: false, name: 'investment_type_id' })
+  investmentTypeId: string;
 }
