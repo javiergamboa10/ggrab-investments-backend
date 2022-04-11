@@ -6,7 +6,7 @@ export default () => ({
     port: parseInt(process.env.DB_PORT, 10) || 5432,
     password: process.env.DB_PASSWORD || '123456',
     user: process.env.DB_USERNAME || 'postgres',
-    database: process.env.DB_DATABASE || 'ph_auth_service',
+    database: process.env.DB_DATABASE || 'ggrab_service',
   },
   rabbitmq: {
     connection: process.env.RABBITMQ_CONNECTION,

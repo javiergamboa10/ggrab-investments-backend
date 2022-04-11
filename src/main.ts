@@ -26,8 +26,8 @@ async function bootstrap() {
   if (configService.get('environment') === 'develop') {
     const options = new DocumentBuilder()
       .addBearerAuth()
-      .setTitle('API')
-      .setDescription('End Points del API')
+      .setTitle('GGRAB Investments API')
+      .setDescription('API Endpoints')
       .setVersion('1.0')
       .addTag('Service')
       .build();

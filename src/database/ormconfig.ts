@@ -3,11 +3,11 @@ import { join } from 'path';
 
 // TODO esta puesto manual porque no esta cogiendo el .env
 const config = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USERNAME || 'postgres',
-  password: process.env.DB_PASSWORD || '123456',
-  database: process.env.DB_DATABASE || 'ph_auth_service',
-  port: process.env.DB_PORT || 5432,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
 };
 
 const connectionOptions: TypeOrmModuleOptions = {
