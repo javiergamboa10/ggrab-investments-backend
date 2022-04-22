@@ -6,10 +6,10 @@ export class CreateInvestmentGeneralInfoDto {
   @IsCurrency()
   @Min(0)
   @IsNotEmpty()
-  total_value: number;
+  totalValue: number;
   @ApiProperty()
   @IsCurrency()
   @Min(0)
   @IsNotEmpty()
-  initial_fee: number;
+  initialFee: number;
 }

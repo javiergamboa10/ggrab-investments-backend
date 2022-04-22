@@ -5,6 +5,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { DeleteResult } from 'typeorm';
 import { IPaginationModel } from '../../shared/paginate.model';
 import { ParseTool } from '../../shared/utils/parseTool';
 import { CreateInvestmentDto } from './dto/create-investment.dto';
@@ -53,8 +54,8 @@ export class InvestmentsService {
     }
   }
 
-  async remove(id: string) {
-    Logger.log('[Service] delete group');
+  async remove(id: string): Promise<DeleteResult> {
+    Logger.log('[Service] delete investment');
     const entity: Investment = await this._investmentsRepository.findOne(id);
     if (!entity) {
       throw new BadRequestException(`La inversión con id ${id} no existe`);

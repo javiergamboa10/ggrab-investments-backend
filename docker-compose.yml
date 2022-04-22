@@ -9,7 +9,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123456789
     volumes:
-      - /mock-db:/var/lib/postgresql
+      - ./mock-db:/var/lib/postgresql
     ports:
       - "5430:5432"
 

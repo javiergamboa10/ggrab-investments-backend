@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { IPaginationModel } from '../../shared/paginate.model';
 import { InvestmentTypeViewDto } from './dto/investment-type.view.dto';
 import { InvestmentTypesService } from './investment-types.service';
 
@@ -12,8 +13,11 @@ export class InvestmentTypesController {
 
   @Get()
   @ApiOkResponse({ type: [InvestmentTypeViewDto] })
-  findAll(): Promise<InvestmentTypeViewDto[]> {
-    return this._investmentTypesService.findAll();
+  findAll(
+    @Query('page') page: number,
+    @Query('limit') itemsPerPage: number,
+  ): Promise<IPaginationModel<InvestmentTypeViewDto>> {
+    return this._investmentTypesService.findAll(page, itemsPerPage);
   }
 
   @Get(':id')

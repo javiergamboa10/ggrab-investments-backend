@@ -16,18 +16,22 @@ import { DeleteResult } from 'typeorm';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ApiPaginatedResponse } from '../../shared/decorators/api-paginated-response';
 import { IPaginationModel } from '../../shared/paginate.model';
+import { CreateInvestmentInteractor } from './interactor/create-investment.interactor';
 
 @ApiTags('Investments')
 @Controller('investments')
 export class InvestmentsController {
-  constructor(private readonly _investmentsService: InvestmentsService) {}
+  constructor(
+    private readonly _investmentsService: InvestmentsService,
+    private readonly _createInvestmentInteractor: CreateInvestmentInteractor,
+  ) {}
 
   @Post()
   @ApiCreatedResponse({ type: InvestmentViewDto })
   create(
     @Body() createInvestmentDto: CreateInvestmentDto,
   ): Promise<InvestmentViewDto> {
-    return this._investmentsService.create(createInvestmentDto);
+    return this._createInvestmentInteractor.create(createInvestmentDto);
   }
 
   @Put(':id')

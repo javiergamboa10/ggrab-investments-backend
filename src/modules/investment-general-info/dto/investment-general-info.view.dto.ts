@@ -3,8 +3,13 @@ import { Expose } from 'class-transformer';
 
 @Expose()
 export class InvestmentGeneralInfoViewDto {
+  constructor() {
+    this.totalValue = null;
+    this.initialFee = null;
+  }
+
   @ApiProperty()
-  total_value: number;
+  totalValue: number;
   @ApiProperty()
-  initial_fee: number;
+  initialFee: number;
 }

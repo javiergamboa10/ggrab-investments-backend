@@ -7,6 +7,8 @@ import { InvestmentTypesModule } from './modules/investment-types/investment-typ
 import { InvestmentsModule } from './modules/investments/investments.module';
 import { InvestmentGeneralInfoModule } from './modules/investment-general-info/investment-general-info.module';
 import { InvestmentFeeInfoModule } from './modules/investment-fee-info/investment-fee-info.module';
+import { InvestorsModule } from './modules/investors/investors.module';
+import { IdentityTypesModule } from './modules/identity-types/identity-types.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -19,6 +21,8 @@ import configuration from './config/configuration';
     InvestmentsModule,
     InvestmentGeneralInfoModule,
     InvestmentFeeInfoModule,
+    InvestorsModule,
+    IdentityTypesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

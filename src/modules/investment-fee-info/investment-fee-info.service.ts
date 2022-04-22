@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { IPaginationModel } from '../../shared/paginate.model';
+import { CreateInvestmentFeeInfoDto } from './dto/create-investment-fee-info.dto';
 import { InvestmentFeeInfoViewDto } from './dto/investment-fee-info.view.dto';
 import { InvestmentFeeInfo } from './entities/investment-fee-info.entity';
 import { InvestmentFeeInfoRepository } from './investment-fee-info.repository';
@@ -14,6 +15,31 @@ export class InvestmentFeeInfoService {
   constructor(
     private readonly _investmentFeeInfoRepository: InvestmentFeeInfoRepository,
   ) {}
+
+  async create(
+    investmentId: string,
+    createInvestmentFeelInfoDtos: CreateInvestmentFeeInfoDto[],
+  ): Promise<InvestmentFeeInfoViewDto[]> {
+    try {
+      Logger.log('[Service] create investment fee info');
+      const entities: InvestmentFeeInfo[] = createInvestmentFeelInfoDtos.map(
+        (feeInfo: CreateInvestmentFeeInfoDto) => {
+          let investmentFeeInfo: InvestmentFeeInfo = new InvestmentFeeInfo();
+          investmentFeeInfo = plainToInstance(InvestmentFeeInfo, feeInfo);
+          investmentFeeInfo.investmentId = investmentId;
+          return investmentFeeInfo;
+        },
+      );
+      const result: InvestmentFeeInfo[] =
+        await this._investmentFeeInfoRepository.save(entities);
+      return result.map((feeInfo: InvestmentFeeInfo) => {
+        return plainToInstance(InvestmentFeeInfoViewDto, feeInfo);
+      });
+    } catch (error) {
+      Logger.error(error);
+      throw new InternalServerErrorException();
+    }
+  }
 
   async findByInvestmentId(
     investmentId: string,
